@@ -1,0 +1,147 @@
+Chat Box HTML :
+<!-- Chat Box Icon -->
+  <div class="chat-icon" onclick="toggleChatBox()">
+    <img src="./assets/img/favicon.png" alt="Your Logo">
+</div>
+
+<!-- Chat Box Container -->
+<div id="chat-box" class="chat-box">
+    <div class="chat-header">
+        <span class="close-btn" onclick="toggleChatBox()">&times;</span>
+        <h3>Chat Bot</h3>
+    </div>
+    <div class="chat-body" id="chat-body">
+        <div class="question">Ask me anything!</div>
+    </div>
+    <div class="user-input">
+        <input type="text" id="user-question" placeholder="Type your question...">
+        <button onclick="askQuestion()">Ask</button>
+    </div>
+</div>
+
+<script>
+    function toggleChatBox() {
+        var chatBox = document.getElementById('chat-box');
+        chatBox.style.display = chatBox.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function askQuestion() {
+        var userQuestionInput = document.getElementById('user-question');
+        var userQuestion = userQuestionInput.value.trim();
+
+        if (userQuestion !== "") {
+            var chatBody = document.getElementById('chat-body');
+            var userQuestionDiv = document.createElement('div');
+            userQuestionDiv.classList.add('question');
+            userQuestionDiv.textContent = userQuestion;
+            chatBody.appendChild(userQuestionDiv);
+
+            var answerDiv = document.createElement('div');
+            answerDiv.classList.add('answer');
+            answerDiv.textContent = getAnswer(userQuestion);
+            chatBody.appendChild(answerDiv);
+
+            // Clear the input field
+            userQuestionInput.value = "";
+        }
+    }
+
+    function getAnswer(question) {
+        // Add your logic to provide predefined answers based on the asked question
+        switch (question.toLowerCase()) {
+            case 'what is your name?':
+                return 'My name is Interactive Chat Bot.';
+            case 'how can you help me?':
+                return 'I can provide information and answer your questions.';
+            case 'what services do you offer?':
+                return 'I can assist you with a variety of tasks.';
+            case 'how do i contact support?':
+                return 'You can contact support through our website or by phone.';
+            case 'thank you!':
+                return 'You\'re welcome!';
+            default:
+                return 'I do not understand that question.';
+        }
+    }
+</script>
+
+
+Chat Box CSS:
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .chat-icon {
+        position: fixed;
+        bottom: 20px;
+        right: 70px;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .chat-icon img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .chat-box {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+    }
+
+    .chat-header {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .chat-header h3 {
+        margin: 0;
+    }
+
+    .close-btn {
+        cursor: pointer;
+    }
+
+    .chat-body {
+        padding: 20px;
+    }
+
+    .question {
+        margin-bottom: 10px;
+    }
+
+    .answer {
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .user-input {
+        margin-top: 10px;
+        display: flex;
+    }
+
+    .user-input input {
+        flex: 1;
+        padding: 5px;
+    }
+
+    .user-input button {
+        margin-left: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+</style>
